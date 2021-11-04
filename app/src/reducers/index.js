@@ -1,34 +1,43 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from './../actions';
+import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "./../actions";
 
 const initialState = {
-  transaction: {id:"12345", type:"buy", status:"pending", amount:{amount:"1",currency:"BTC"}},
+  transactions: {
+    time_open: "2021-01-01T00:00:00Z",
+    time_close: "2021-01-01T23:59:59Z",
+    open: 28966.95587637,
+    high: 29568.27873174,
+    low: 28812.98178846,
+    close: 29344.67383113,
+    volume: 29395282202,
+    market_cap: 538407186724,
+  },
   isFetching: false,
-  error: ''
-}
+  error: "",
+};
 
 export const reducer = (state = initialState, action) => {
   switch (action.type) {
-    case(FETCH_START):
-      return({
+    case FETCH_START:
+      return {
         ...state,
-        transaction: {},
-        isFetching:true,
-        error:''
-      });
-    case(FETCH_SUCCESS):
-      return({
+        transactions: {},
+        isFetching: true,
+        error: "",
+      };
+    case FETCH_SUCCESS:
+      return {
         ...state,
-        transaction: action.payload,
+        transactions: action.payload,
         isFetching: false,
-        error: ''
-      });
-    case(FETCH_ERROR):
-      return({
+        error: "",
+      };
+    case FETCH_ERROR:
+      return {
         ...state,
-        transaction:{},
+        transactions: {},
         isFetching: false,
-        error: action.payload
-      })
+        error: action.payload,
+      };
     default:
       return state;
   }
